@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>google-auth測試</title>
+</head>
+<body>
+    <form action="http://localhost:3005/auth/google" method="GET">
+        <button type="submit">登入</button>
+    </form>
+    <button onclick="login()">使用Token登入</button>
+    <button onclick="logout()">登出</button>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const login = ()=>{
+            const token = document.cookie
+            axios.get('/auth/login',{
+                headers: {
+                Authorization: token,
+                }
+            })
+            .then((res)=>{
+                console.log(res)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+
+        const logout = ()=>{
+            const token = document.cookie
+            axios.get('/auth/logout',{
+                headers: {
+                Authorization: token,
+                }
+            })
+            .then((res)=>{
+                console.log(res)
+            })
+        }
+    </script>
+</body>
+</html>
