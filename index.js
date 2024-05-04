@@ -5,6 +5,8 @@ const path = require('path')
 const GoogleStrategy = require( 'passport-google-oauth20' ).Strategy;
 const app = express();
 
+// 這是路徑的使用public裡面的index在伺服器開了以後，打http://localhost:3005
+// 會自動導向index.html的內容
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(cors());

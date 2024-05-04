@@ -6,13 +6,16 @@
     <title>google-auth測試</title>
 </head>
 <body>
+    <!-- 這邊會自動導向google帳號選擇頁面 -->
     <form action="http://localhost:3005/auth/google" method="GET">
-        <button type="submit">登入</button>
+        <button type="submit">google帳號登入</button>
     </form>
     <button onclick="login()">使用Token登入</button>
     <button onclick="logout()">登出</button>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+
+        // 使用JWT登入會夾帶cookie中的token
         const login = ()=>{
             const token = document.cookie
             axios.get('/auth/login',{
@@ -28,6 +31,7 @@
             })
         }
 
+        // 登出會清除cookie中的token
         const logout = ()=>{
             const token = document.cookie
             axios.get('/auth/logout',{
